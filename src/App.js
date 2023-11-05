@@ -1,25 +1,23 @@
-import './App.css';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import CreateForm from "./page/CreateForm";
-
+import { Provider} from "react-redux";
+import "./App.css";
+// import CreateForm from "./page/CreateForm";
+import store from "./redux/store";
+import PageNotFound from "./page/PageNotFound";
+import Home from "./page/Home";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <CreateForm
-                text="Create Job"
-                gradientColors={["#1a5276", "#733d90"]}
-              />
-            }
-          ></Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

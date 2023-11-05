@@ -1,58 +1,90 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 import JobDetailsPart1 from '../JobDetailsPart1';
 import JobDetailsPart2 from '../JobDetailsPart2';
+import GradientButton from '../../Component/GradientButton';
+import { createJob } from '../../service/api';
 
 
-const CreateForm = ({ text, gradientColors }) => {
 
-    // const [isPopupOpen, setIsPopupOpen] = useState(false);
-    // const [isShow, setIsShow] = useState(false);
-    // const [isSelected1, setIsSelected1] = useState(false);
-    // const [isSelected2, setIsSelected2] = useState(false);
+const CreateForm = () => {
 
+    const [showButton, setShowButton] = useState(true);
+    const [isShowForm1, setIsShowForm1] = useState(false);
+    const [isShowForm2, setIsShowForm2] = useState(false);
+    const [formData, setFormData] = useState({
+        jobTitle: "",
+        companyName: "",
+        industry: "",
+        location: "",
+        remoteType: "",
+        experienceMin: 0,
+        experienceMax: 0,
+        salaryMin: 0,
+        salaryMax: 0,
+        totalEmployees: 0,
+        applyType: "",
+    });
 
-    // const toggleSelection = (circleNumber) => {
-    //     if (circleNumber === 1) {
-    //         setIsSelected1(true);
-    //         setIsSelected2(false);
+    const handleButtonClick = () => {
+        setShowButton(false);
+        setIsShowForm1(true);
+    };
 
-    //     } else if (circleNumber === 2) {
-    //         setIsSelected2(true);
-    //         setIsSelected1(false);
-    //     }
-    // };
+    const handleForm1Submit = (dataFromPart1) => {
+        setFormData({
+            ...formData,
+            ...dataFromPart1,
+        });
+        setIsShowForm1(false);
+        setIsShowForm2(true);
+    };
 
-    // const show = () => {
-    //     setIsPopupOpen(false);
-    //     setIsShow(true);
+    console.log("formData", formData)
 
-    // };
-
-    // const openPopup = () => {
-    //     setIsPopupOpen(true);
-    // };
+    const handleForm2Submit = async (dataFromPart2) => {
+        setFormData({
+            ...formData,
+            ...dataFromPart2,
+        });
+        try {
+            const response = await createJob(formData);
+            console.log(response);
+            toast.success('Job added successfully');
+            setFormData({
+                jobTitle: "",
+                companyName: "",
+                industry: "",
+                location: "",
+                remoteType: "",
+                experienceMin: 0,
+                experienceMax: 0,
+                salaryMin: 0,
+                salaryMax: 0,
+                totalEmployees: 0,
+                applyType: "",
+            });
+        } catch (error) {
+            console.error(error);
+            toast.error('Error while adding the job');
+        }
+    };
 
     return (
-        <div style={{ width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "#FFFFFF", }}>
-            {/* {!isPopupOpen && (<div style={{
-                background: `linear-gradient(to right, ${gradientColors.join(', ')})`,
-                color: 'white',
-                padding: '10px 20px',
-                cursor: 'pointer',
-                borderRadius: '8px',
-                border: '1px solid black',
-            }}
-                onClick={openPopup}
-            >
-                {text}
-            </div>)} */}
+        <div style={{ width: "100%", height: "100vh", backgroundColor: "#FFFFFF" }}>
 
+            {showButton && (<GradientButton
+                text="Click Me"
+                onClick={handleButtonClick}
+                gradientColors={["#1a5276", "#733d90"]}
+            />)}
 
-            <JobDetailsPart1 />
-            <JobDetailsPart2 />
-
-
-
+            {isShowForm1 && (
+                <JobDetailsPart1 onNext={handleForm1Submit} />
+            )}
+            {isShowForm2 && (
+                <JobDetailsPart2 onNext={handleForm2Submit} />
+            )}
 
 
         </div >
