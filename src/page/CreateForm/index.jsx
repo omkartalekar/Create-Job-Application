@@ -4,27 +4,16 @@ import JobDetailsPart1 from '../JobDetailsPart1';
 import JobDetailsPart2 from '../JobDetailsPart2';
 import GradientButton from '../../Component/GradientButton';
 import { createJob } from '../../service/api';
-
-
+import { initialFormDetailsValues } from '../../constant/formDetailsConstants';
+import JobListings from '../JobListings';
 
 const CreateForm = () => {
 
     const [showButton, setShowButton] = useState(true);
     const [isShowForm1, setIsShowForm1] = useState(false);
     const [isShowForm2, setIsShowForm2] = useState(false);
-    const [formData, setFormData] = useState({
-        jobTitle: "",
-        companyName: "",
-        industry: "",
-        location: "",
-        remoteType: "",
-        experienceMin: 0,
-        experienceMax: 0,
-        salaryMin: 0,
-        salaryMax: 0,
-        totalEmployees: 0,
-        applyType: "",
-    });
+    const [jobListingsVisible, setJobListingsVisible] = useState(false);
+    const [formData, setFormData] = useState(initialFormDetailsValues);
 
     const handleButtonClick = () => {
         setShowButton(false);
@@ -39,31 +28,18 @@ const CreateForm = () => {
         setIsShowForm1(false);
         setIsShowForm2(true);
     };
-
-    console.log("formData", formData)
-
     const handleForm2Submit = async (dataFromPart2) => {
-        setFormData({
+        const updatedFormData = {
             ...formData,
             ...dataFromPart2,
-        });
+        };
         try {
-            const response = await createJob(formData);
+            const response = await createJob(updatedFormData);
             console.log(response);
             toast.success('Job added successfully');
-            setFormData({
-                jobTitle: "",
-                companyName: "",
-                industry: "",
-                location: "",
-                remoteType: "",
-                experienceMin: 0,
-                experienceMax: 0,
-                salaryMin: 0,
-                salaryMax: 0,
-                totalEmployees: 0,
-                applyType: "",
-            });
+            setFormData(initialFormDetailsValues);
+            setIsShowForm2(false);
+            setJobListingsVisible(true);
         } catch (error) {
             console.error(error);
             toast.error('Error while adding the job');
@@ -71,7 +47,7 @@ const CreateForm = () => {
     };
 
     return (
-        <div style={{ width: "100%", height: "100vh", backgroundColor: "#FFFFFF" }}>
+        <div style={{ width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "10px", flexDirection: "column" }}>
 
             {showButton && (<GradientButton
                 text="Click Me"
@@ -86,6 +62,7 @@ const CreateForm = () => {
                 <JobDetailsPart2 onNext={handleForm2Submit} />
             )}
 
+            {jobListingsVisible && <JobListings />}
 
         </div >
 

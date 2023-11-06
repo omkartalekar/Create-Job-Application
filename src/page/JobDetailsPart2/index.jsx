@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 
 import RadioButton from '../../Component/RadioButton'
 import PrimaryText from '../../Component/PrimaryText'
-import PrimaryButtons from '../../Component/PrimaryButtons'
+import PrimaryButtons from '../../Component/PrimaryButton'
 import FormField from '../../Component/FormField'
 
 import { jobDetailsPart2Schema, initialJobDetailsPart2Values } from '../../constant/jobDetailsPart2Constants';
@@ -32,12 +32,11 @@ const JobDetailsPart2 = ({ onNext }) => {
     };
 
     const handleSubmit = () => {
-        onNext(formData)
-        console.log('Handling submit', formData);
+        onNext(formData);
     };
     return (
-        <div style={{ display: "flex", justifyContent: 'center', alignItems: "center", height: "564px", width: "577px", border: "1px solid #E6E6E6", backgroundColor: "#FFFFFF" }}>
-            <div style={{ margin: "32px", width: "513px", height: "500px", border: "1px solid #E6E6E6" }}>
+        <div style={{ display: "flex", justifyContent: 'center', alignItems: "center", height: "564px", width: "577px", backgroundColor: "#FFFFFF" }}>
+            <div style={{ margin: "32px", width: "513px", height: "500px"}}>
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "513px", height: "28px", marginBottom: "24px" }}>
                     <p style={{ fontSize: "20px", fontWeight: "400", lineHeight: "28px", color: '#212121' }}>Create a job</p>
                     <p style={{ fontSize: "16px", fontWeight: "500", lineHeight: "24px" }}>Step 2</p>
@@ -55,12 +54,12 @@ const JobDetailsPart2 = ({ onNext }) => {
                                 type: "number", placeholder: "Minimum", name: "experienceMin",
                                 value: formData.experienceMin,
                                 onChange: handleInputChange,
-                            }} />
-                            <FormField label="" inputProps={{
+                            }} includeSpan={false}/>
+                            <FormField label="  " inputProps={{
                                 type: "number", placeholder: "Maximum", name: "experienceMax",
                                 value: formData.experienceMax,
                                 onChange: handleInputChange,
-                            }} />
+                            }} includeSpan={false}/>
                         </div>
 
 
@@ -86,18 +85,20 @@ const JobDetailsPart2 = ({ onNext }) => {
                         <div style={{ height: "60px", gap: "4px", display: "flex", justifyContent: "flex-start", flexDirection: "column", marginBottom: "96px" }}>
                             <PrimaryText customStyle={{ fontSize: "14px", lineHeight: "20px", fontWeight: "500", display: "flex", justifyContent: "flex-start" }} includeSpan={false} text="Apply type" />
 
-                            <div style={{ height: "36px", borderRadius: "5px", border: "1px solid #E6E6E6", gap: "24px", width: "246px", padding: "8px 0px 8px 0", display: "flex", flexDirection: "row" }}>
+                            <div style={{ height: "36px", borderRadius: "5px", gap: "24px", padding: "8px 0px 8px 0", display: "flex", flexDirection: "row" }}>
                                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                                     <RadioButton checked={selectedOption === 1} onClick={() => handleOptionClick(1)} />
-                                    <p>Quick apply</p>
+                                    <p style={{ marginLeft: "5px", marginRight: "10px", color: "#7A7A7A" }}>Quick apply</p>
                                     <RadioButton checked={selectedOption === 2} onClick={() => handleOptionClick(2)} />
-                                    <p>External apply</p>
+                                    <p style={{ marginLeft: "5px",color:"#7A7A7A" }}>External apply</p>
                                 </div>
                             </div>
                         </div>
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                            <PrimaryButtons text="Save" onClick={handleSubmit} />
+                            <PrimaryButtons text="Save"/>
                         </div>
+                        <button type="submit">Submit</button>
+
                     </Form>
                 </Formik>
             </div>

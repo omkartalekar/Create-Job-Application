@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Formik, Form } from 'formik';
 
 import FormField from '../../Component/FormField'
-import PrimaryButtons from '../../Component/PrimaryButtons'
+import PrimaryButtons from '../../Component/PrimaryButton'
 import { jobDetailsPart1Schema, initialJobDetailsPart1Values } from '../../constant/jobDetailsPart1Constants';
 
 
@@ -18,7 +18,6 @@ const JobDetailsPart1 = ({ onNext }) => {
     };
 
     const handleSubmit = () => {
-        console.log(formData);
         onNext(formData);
     }
     return (
@@ -33,7 +32,7 @@ const JobDetailsPart1 = ({ onNext }) => {
                 <Formik
                     initialValues={initialJobDetailsPart1Values}
                     validationSchema={jobDetailsPart1Schema}
-                    onSubmit={handleSubmit}
+                    // onSubmit={handleSubmit}
                 >
                     <Form>
 
@@ -41,17 +40,17 @@ const JobDetailsPart1 = ({ onNext }) => {
                             type: "text", placeholder: "ex. UX UI Designer", name: "jobTitle",
                             value: formData.jobTitle,
                             onChange: handleInputChange,
-                        }} />
+                        }} includeSpan={true}/>
                         <FormField label="Company name" inputProps={{
                             type: "text", placeholder: "ex. Google", name: "companyName",
                             value: formData.companyName,
                             onChange: handleInputChange,
-                        }} />
+                        }} includeSpan={true}/>
                         <FormField label="Industry" inputProps={{
                             type: "text", placeholder: "ex. Information Technology", name: "industry",
                             value: formData.industry,
                             onChange: handleInputChange,
-                        }} />
+                        }} includeSpan={true}/>
 
                         <div style={{ height: "60px", width: "513px", display: "flex", flexDirection: "row", gap: "24px", marginBottom: "96px" }}>
                             <FormField label="Location" inputProps={{

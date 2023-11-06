@@ -1,9 +1,9 @@
 import React from 'react'
-import JobListings from '../JobListings'
+import CreateForm from '../CreateForm'
 
 const Home = () => {
   return (
-    <JobListings />
+    <CreateForm />
   )
 }
 
