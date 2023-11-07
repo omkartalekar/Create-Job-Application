@@ -9,12 +9,10 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div className="App">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-        </div>
       </BrowserRouter>
     </Provider>
   );

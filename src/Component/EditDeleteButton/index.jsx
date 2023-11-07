@@ -136,7 +136,7 @@ const EditDeleteButton = ({ job }) => {
             type: "text", placeholder: "ex. UX UI Designer", name: "jobTitle",
             value: formData.jobTitle,
             onChange: handleInputChange,
-          }} includeSpan={false} />
+          }} includeSpan={true} />
 
           <FormField label="Company name" inputProps={{
             type: "text", placeholder: "ex. Google", name: "companyName",
@@ -190,7 +190,7 @@ const EditDeleteButton = ({ job }) => {
         </div>
         <div style={{ width: "185px" }}>
 
-          <FormField label="Total employee" inputProps={{
+          <FormField  label="Total employee" customStyle={{width:"180px"}} inputProps={{
             type: "number", placeholder: "ex. 100", name: "totalEmployees",
             value: formData.totalEmployees,
             onChange: handleInputChange,

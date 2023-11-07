@@ -15,7 +15,7 @@ const JobListings = () => {
 
   return (
 
-    <div style={{ height: "100vh", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+    <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column",marginTop:"10px"}}>
 
       {jobs.length === 0 ? (
         <NoJobsAvailable/>

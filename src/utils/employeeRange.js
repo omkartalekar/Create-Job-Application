@@ -1,6 +1,9 @@
 
 function employeeRange(employeeCount) {
-  if (employeeCount >= 1 && employeeCount <= 10) {
+  if (employeeCount === 0 ) {
+    return "0";
+  }
+  else if (employeeCount >= 1 && employeeCount <= 10) {
     return "1-10";
   } else if (employeeCount >= 11 && employeeCount <= 50) {
     return "11-50";

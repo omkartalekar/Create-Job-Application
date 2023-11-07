@@ -8,8 +8,8 @@ import EditDeleteButton from '../EditDeleteButton';
 const JobCard = ({ job }) => {
     const employeeCount = employeeRange(job?.totalEmployees);
     return (
-        <div style={{ width: "830px", height: "320px", backgroundColor: "#FFFFFF", border: "1px solid #E6E6E6", marginBottom: "10px",gap:"10px",borderRadius:"10px",padding:"16px 24px 16px 24px",display:"flex",flexDirection:"row"}}>
-            <div style={{ width: "782px", height: "288px",display:"flex",flexDirection:"row"}}>
+        <div style={{ width: "830px", backgroundColor: "#FFFFFF", border: "1px solid #E6E6E6", marginBottom: "10px",gap:"10px",borderRadius:"10px",padding:"16px 24px 16px 24px",display:"flex",flexDirection:"row"}}>
+            <div style={{ width: "782px",display:"flex",flexDirection:"row"}}>
 
                 <div style={{ gap: "8px", display: "flex", flexDirection: "row" }}>
                     <img src={companyLogo} alt="logo" height={"48px"} width={"48px"} />
