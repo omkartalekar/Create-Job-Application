@@ -97,7 +97,6 @@ const JobDetailsPart2 = ({ onNext }) => {
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
                             <PrimaryButtons text="Save"/>
                         </div>
-                        <button type="submit">Submit</button>
 
                     </Form>
                 </Formik>

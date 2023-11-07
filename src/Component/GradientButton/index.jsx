@@ -3,7 +3,7 @@ import React from 'react'
 const GradientButton = ({ text,onClick, gradientColors }) => {
     return (
         <div style={{
-            width: "15%",
+            width: "45%",
             background: `linear-gradient(to right, ${gradientColors.join(', ')})`,
             color: 'white',
             padding: '10px 20px',

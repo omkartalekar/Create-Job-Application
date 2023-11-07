@@ -28,6 +28,7 @@ const EditDeleteButton = ({ job }) => {
     salaryMin: job.salaryMin,
     salaryMax: job.salaryMax,
     totalEmployees: job.totalEmployees,
+    applyType: job.applyType
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +48,7 @@ const EditDeleteButton = ({ job }) => {
   };
 
   const openEditModal = () => {
+    setSelectedOption(job.applyType === "Quick apply" ? 1 : 2);
     setEditModalOpen(true);
   };
 
@@ -58,21 +60,19 @@ const EditDeleteButton = ({ job }) => {
     try {
       await removeJobById(job.id);
       dispatch(getAllJobs());
-      console.log('Job deleted successfully');
+      toast.success('Job deleted successfully');
     } catch (error) {
-      console.log('Error deleting job', error);
+      toast.error('Error while deleting job');
     }
   };
 
   const UpdateJob = async () => {
     try {
       const response = await updateJobById(job.id,formData);
-      console.log(response);
       toast.success('Job updated successfully');
       setEditModalOpen(false);
       dispatch(getAllJobs());
     } catch (error) {
-      console.error(error);
       toast.error('Error while adding the job');
     }
   };

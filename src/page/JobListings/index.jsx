@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import JobCard from '../../Component/JobCard'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllJobs } from '../../redux/actions/jobActions';
+import NoJobsAvailable from '../NoJobsAvaialbale';
 
 const JobListings = () => {
 
@@ -14,11 +15,13 @@ const JobListings = () => {
 
   return (
 
-    <div style={{ height: "100vh", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", position: "relative" }}>
+    <div style={{ height: "100vh", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
 
-      {
-        jobs.map(job => <JobCard job={job} key={job.id} />)
-      }
+      {jobs.length === 0 ? (
+        <NoJobsAvailable/>
+      ) : (
+        jobs.map((job) => <JobCard job={job} key={job.id} />)
+      )}
 
     </div>
   )

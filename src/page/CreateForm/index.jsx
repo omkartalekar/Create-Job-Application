@@ -35,7 +35,6 @@ const CreateForm = () => {
         };
         try {
             const response = await createJob(updatedFormData);
-            console.log(response);
             toast.success('Job added successfully');
             setFormData(initialFormDetailsValues);
             setIsShowForm2(false);
@@ -47,13 +46,17 @@ const CreateForm = () => {
     };
 
     return (
-        <div style={{ width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "10px", flexDirection: "column" }}>
+        <div style={{ width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
 
-            {showButton && (<GradientButton
-                text="Click Me"
-                onClick={handleButtonClick}
-                gradientColors={["#1a5276", "#733d90"]}
-            />)}
+            {showButton && (
+                <div style={{
+                    alignSelf: "flex-start", marginBottom: "450px" }}>
+                    <GradientButton
+                        text="Click Me"
+                        onClick={handleButtonClick}
+                        gradientColors={["#1a5276", "#733d90"]}
+                    />
+                    </div>)}
 
             {isShowForm1 && (
                 <JobDetailsPart1 onNext={handleForm1Submit} />

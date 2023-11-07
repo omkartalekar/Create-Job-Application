@@ -40,7 +40,6 @@ const JobCard = ({ job }) => {
             </div>
             <EditDeleteButton job={job} style={{ position: "absolute", top: "8px", right: "8px" }} />
         </div>
-
     )
 }
 
